@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import AppLogo from '../../components/AppLogo';
 import {
-  ShieldCheck, Search, TrendingUp, Upload, MessageSquare, BarChart3, FilePlus2,
+  Search, TrendingUp, Upload, MessageSquare, BarChart3, FilePlus2,
+  Shield,
 } from 'lucide-react';
 
 const FEATURES = [
-  { icon: ShieldCheck, title: 'Anonymous Complaints', desc: 'Report issues without revealing your identity to anyone but the college administration.' },
+  { icon: Shield, title: 'Anonymous Complaints', desc: 'Report issues without revealing your identity to anyone but the college administration.' },
   { icon: Search, title: 'Complaint Tracking', desc: 'Track your complaint in real time using a unique complaint ID.' },
   { icon: TrendingUp, title: 'Priority Escalation', desc: 'Urgent issues get automatically routed to the right authority, faster.' },
   { icon: Upload, title: 'Evidence Upload', desc: 'Attach photos, documents, or videos to support your complaint.' },
@@ -28,7 +30,10 @@ export default function LandingPage() {
       <Navbar />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 text-center">
-        <p className="text-primary-600 font-semibold text-sm mb-3">CampusCare</p>
+        <div className="flex items-center justify-center gap-3 mb-4 text-primary-600">
+          <AppLogo className="h-10 w-10" showText={false} />
+          <span className="font-semibold text-sm">ComplaintBuddy</span>
+        </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight max-w-3xl mx-auto">
           Your Voice Matters.
         </h1>
@@ -47,7 +52,7 @@ export default function LandingPage() {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <h2 className="text-2xl font-bold text-slate-800 text-center mb-10">What CampusCare Offers</h2>
+        <h2 className="text-2xl font-bold text-slate-800 text-center mb-10">What ComplaintBuddy Offers</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {FEATURES.map((f) => (
             <div key={f.title} className="card">
@@ -78,7 +83,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="text-center py-8 text-sm text-slate-400">
-        © {new Date().getFullYear()} CampusCare. Built for a safer, more responsive campus.
+        © {new Date().getFullYear()} ComplaintBuddy. Built for a safer, more responsive campus.
       </footer>
     </div>
   );

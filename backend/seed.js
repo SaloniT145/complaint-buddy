@@ -11,12 +11,12 @@ const { getDepartmentForCategory, getInitialAssignedRole } = require('./utils/ro
 const DEMO_PASSWORD = 'Campus@123';
 
 const DEMO_USERS = [
-  { name: 'Ananya Admin', email: 'admin@campuscare.com', role: 'admin', department: 'Administration' },
-  { name: 'Rahul Mentor', email: 'mentor@campuscare.com', role: 'mentor', department: 'Computer Engineering' },
-  { name: 'Sunita HOD', email: 'hod@campuscare.com', role: 'hod', department: 'Computer Engineering' },
-  { name: 'Vikram Principal', email: 'principal@campuscare.com', role: 'principal', department: 'Administration' },
-  { name: 'Priya CR', email: 'cr@campuscare.com', role: 'cr', department: 'Computer Engineering' },
-  { name: 'Sam Student', email: 'student@campuscare.com', role: 'student', department: 'Computer Engineering', studentId: 'STU2026001', year: 'Final Year' },
+  { name: 'Ananya Admin', email: 'admin@complaintbuddy.com', role: 'admin', department: 'Administration' },
+  { name: 'Rahul Mentor', email: 'mentor@complaintbuddy.com', role: 'mentor', department: 'Computer Engineering' },
+  { name: 'Sunita HOD', email: 'hod@complaintbuddy.com', role: 'hod', department: 'Computer Engineering' },
+  { name: 'Vikram Principal', email: 'principal@complaintbuddy.com', role: 'principal', department: 'Administration' },
+  { name: 'Priya CR', email: 'cr@complaintbuddy.com', role: 'cr', department: 'Computer Engineering' },
+  { name: 'Sam Student', email: 'student@complaintbuddy.com', role: 'student', department: 'Computer Engineering', studentId: 'STU2026001', year: 'Final Year' },
 ];
 
 const DEMO_COMPLAINTS = [
@@ -30,7 +30,7 @@ const DEMO_COMPLAINTS = [
 ];
 
 async function seed() {
-  const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/campuscare';
+  const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/complaintbuddy';
   await mongoose.connect(MONGO_URI);
   console.log('Connected to MongoDB for seeding...');
 

@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('campuscare_token');
+    const token = localStorage.getItem('complaintbuddy_token');
     if (!token) {
       setLoading(false);
       return;
@@ -17,27 +17,27 @@ export function AuthProvider({ children }) {
       .get('/auth/me')
       .then((res) => setUser(res.data.user))
       .catch(() => {
-        localStorage.removeItem('campuscare_token');
+        localStorage.removeItem('complaintbuddy_token');
       })
       .finally(() => setLoading(false));
   }, []);
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password });
-    localStorage.setItem('campuscare_token', res.data.token);
+    localStorage.setItem('complaintbuddy_token', res.data.token);
     setUser(res.data.user);
     return res.data.user;
   };
 
   const register = async (payload) => {
     const res = await api.post('/auth/register', payload);
-    localStorage.setItem('campuscare_token', res.data.token);
+    localStorage.setItem('complaintbuddy_token', res.data.token);
     setUser(res.data.user);
     return res.data.user;
   };
 
   const logout = () => {
-    localStorage.removeItem('campuscare_token');
+    localStorage.removeItem('complaintbuddy_token');
     setUser(null);
   };
 

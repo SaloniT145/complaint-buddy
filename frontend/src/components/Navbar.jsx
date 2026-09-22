@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import AppLogo from './AppLogo';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -18,7 +19,7 @@ export default function Navbar() {
     <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-primary-500" />
+          <AppLogo className="h-8 w-8" showText={false} />
           <span className="font-bold text-lg text-slate-800">ComplaintBuddy</span>
         </Link>
 

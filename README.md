@@ -1,4 +1,4 @@
-# CampusCare — Anonymous Complaint & Mentor–Mentee System
+# ComplaintBuddy — Anonymous Complaint & Mentor–Mentee System
 
 **"Speak Freely. Be Heard. Get Resolved."**
 
@@ -6,7 +6,7 @@
 
 Students on campus often face issues (infrastructure problems, faculty concerns,
 harassment, hostel/canteen/transport complaints) but hesitate to report them
-because of fear of being identified. CampusCare lets students file complaints
+because of fear of being identified. ComplaintBuddy lets students file complaints
 **anonymously**, track them with a unique complaint ID, and communicate with
 the assigned authority — while giving CRs, Mentors, HODs, Principals and Admins
 a structured escalation and analytics system to resolve issues faster.
@@ -37,7 +37,7 @@ a structured escalation and analytics system to resolve issues faster.
 ## Project Structure
 
 ```
-campuscare/
+complaintbuddy/
 ├── backend/
 │   ├── models/        # User, Complaint, WeeklyReport
 │   ├── routes/        # auth, complaints, dashboard, reports, users
@@ -65,7 +65,7 @@ Install MongoDB Community Edition and start it locally, or create a free
 MongoDB Atlas cluster and copy its connection string. The default local URI is:
 
 ```
-mongodb://127.0.0.1:27017/campuscare
+mongodb://127.0.0.1:27017/complaintbuddy
 ```
 
 ### 2. Backend
@@ -104,7 +104,7 @@ This uses `concurrently` to start both backend and frontend together.
 **backend/.env**
 ```
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/campuscare
+MONGO_URI=mongodb://127.0.0.1:27017/complaintbuddy
 JWT_SECRET=change_this_secret
 CLIENT_URL=http://localhost:5173
 ```
@@ -120,12 +120,12 @@ All demo accounts use the same password: **`Campus@123`**
 
 | Role      | Email                     |
 |-----------|----------------------------|
-| Admin     | admin@campuscare.com       |
-| Mentor    | mentor@campuscare.com      |
-| HOD       | hod@campuscare.com         |
-| Principal | principal@campuscare.com   |
-| CR        | cr@campuscare.com          |
-| Student   | student@campuscare.com     |
+| Admin     | admin@complaintbuddy.com   |
+| Mentor    | mentor@complaintbuddy.com  |
+| HOD       | hod@complaintbuddy.com     |
+| Principal | principal@complaintbuddy.com |
+| CR        | cr@complaintbuddy.com      |
+| Student   | student@complaintbuddy.com |
 
 Demo complaints are created automatically by `npm run seed` and are clearly
 demo data seeded for dashboard demonstration.

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import AppLogo from '../../components/AppLogo';
 
 const yearOptions = ['First Year', 'Second Year', 'Third Year', 'Final Year'];
 const departmentOptions = [
@@ -39,8 +39,8 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-2 mb-6">
-          <ShieldCheck className="w-8 h-8 text-primary-500" />
-          <span className="font-bold text-xl text-slate-800">CampusCare</span>
+          <AppLogo className="h-8 w-8" showText={false} />
+          <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
         </div>
         <div className="card">
           <h1 className="text-xl font-bold text-slate-800 mb-1">Create your student account</h1>

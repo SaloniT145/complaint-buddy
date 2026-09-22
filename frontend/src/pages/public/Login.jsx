@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ShieldCheck, GraduationCap, UserCircle2, BriefcaseBusiness } from 'lucide-react';
+import { GraduationCap, UserCircle2, BriefcaseBusiness } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import AppLogo from '../../components/AppLogo';
 
 const ROLE_OPTIONS = [
   {
     key: 'student',
     label: 'Student Login',
-    email: 'student@campuscare.com',
+    email: 'student@complaintbuddy.com',
     password: 'Campus@123',
     icon: GraduationCap,
     description: 'Track complaints and update your case status.',
@@ -16,7 +17,7 @@ const ROLE_OPTIONS = [
   {
     key: 'mentor',
     label: 'Mentor Login',
-    email: 'mentor@campuscare.com',
+    email: 'mentor@complaintbuddy.com',
     password: 'Campus@123',
     icon: UserCircle2,
     description: 'Review anonymous complaints from your mentees.',
@@ -24,7 +25,7 @@ const ROLE_OPTIONS = [
   {
     key: 'admin',
     label: 'Admin Login',
-    email: 'admin@campuscare.com',
+    email: 'admin@complaintbuddy.com',
     password: 'Campus@123',
     icon: BriefcaseBusiness,
     description: 'Manage users, assignments, and reports.',
@@ -69,8 +70,8 @@ export default function Login() {
         <div className="w-full max-w-5xl">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <ShieldCheck className="w-8 h-8 text-primary-500" />
-              <span className="font-bold text-xl text-slate-800">CampusCare</span>
+              <AppLogo className="h-8 w-8" showText={false} />
+              <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
             </div>
             <h1 className="text-3xl font-bold text-slate-800">Choose your login</h1>
             <p className="text-sm text-slate-500 mt-2">Select the portal you want to access.</p>
@@ -104,8 +105,8 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-8">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-2 mb-6">
-          <ShieldCheck className="w-8 h-8 text-primary-500" />
-          <span className="font-bold text-xl text-slate-800">CampusCare</span>
+          <AppLogo className="h-8 w-8" showText={false} />
+          <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
         </div>
 
         <div className="card">
