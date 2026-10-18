@@ -39,8 +39,6 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-2 mb-6">
-          <ShieldCheck className="w-8 h-8 text-primary-500" />
-          <span className="font-bold text-xl text-slate-800">Complaint Buddy</span>
           <AppLogo className="h-8 w-8" showText={false} />
           <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
         </div>

@@ -6,9 +6,6 @@ export default function About() {
     <div>
       <Navbar />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-3xl font-bold text-slate-900 mb-4">About Complaint Buddy</h1>
-        <p className="text-slate-600 leading-relaxed">
-          Complaint Buddy is a college complaint and mentor-mentee support system built to make it easy for
         <h1 className="text-3xl font-bold text-slate-900 mb-4">About ComplaintBuddy</h1>
         <p className="text-slate-600 leading-relaxed">
           ComplaintBuddy is a college complaint and mentor-mentee support system built to make it easy for
@@ -18,7 +15,6 @@ export default function About() {
           progress using a simple tracking ID.
         </p>
         <p className="text-slate-600 leading-relaxed mt-4">
-          Beyond individual complaints, Complaint Buddy gives administrators visibility into recurring issues and
           Beyond individual complaints, ComplaintBuddy gives administrators visibility into recurring issues and
           department-level trends, and gives mentors a lightweight way to file weekly reports on student
           concerns — helping the whole institution respond faster and more transparently.

@@ -55,8 +55,6 @@ export default function Sidebar() {
   const content = (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-2 px-5 h-16 border-b border-slate-200">
-        <ShieldCheck className="w-6 h-6 text-primary-500" />
-        <span className="font-bold text-slate-800">Complaint Buddy</span>
         <AppLogo className="h-7 w-7" showText={false} />
         <span className="font-bold text-slate-800">ComplaintBuddy</span>
       </div>
@@ -96,7 +94,6 @@ export default function Sidebar() {
       </aside>
 
       <div className="md:hidden flex items-center justify-between bg-white border-b border-slate-200 px-4 h-14 sticky top-0 z-40">
-        <span className="font-bold text-slate-800">Complaint Buddy</span>
         <div className="flex items-center gap-2">
           <AppLogo className="h-6 w-6" showText={false} />
           <span className="font-bold text-slate-800">ComplaintBuddy</span>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ShieldCheck, GraduationCap, UserCircle2, BriefcaseBusiness, Eye, EyeOff } from 'lucide-react';
 import { GraduationCap, UserCircle2, BriefcaseBusiness } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
@@ -41,7 +40,6 @@ export default function Login() {
 
   const [email, setEmail] = useState(defaultEmail);
   const [password, setPassword] = useState(defaultPassword);
-  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { showToast } = useToast();
@@ -72,8 +70,6 @@ export default function Login() {
         <div className="w-full max-w-5xl">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <ShieldCheck className="w-8 h-8 text-primary-500" />
-              <span className="font-bold text-xl text-slate-800">Complaint Buddy</span>
               <AppLogo className="h-8 w-8" showText={false} />
               <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
             </div>
@@ -109,8 +105,6 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-8">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center gap-2 mb-6">
-          <ShieldCheck className="w-8 h-8 text-primary-500" />
-          <span className="font-bold text-xl text-slate-800">Complaint Buddy</span>
           <AppLogo className="h-8 w-8" showText={false} />
           <span className="font-bold text-xl text-slate-800">ComplaintBuddy</span>
         </div>
@@ -133,17 +127,7 @@ export default function Login() {
             </div>
             <div>
               <label className="label">Password</label>
-              <div className="relative">
-                <input type={showPassword ? 'text' : 'password'} required className="input-field pr-10" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((visible) => !visible)}
-                  className="absolute inset-y-0 right-0 flex items-center px-3 text-slate-500 hover:text-slate-700"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
-              </div>
+              <input type="password" required className="input-field" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full">
               {loading ? 'Logging in...' : 'Login'}

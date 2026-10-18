@@ -1,16 +1,9 @@
-# CampusCare
-
-Anonymous complaint management and mentor-assisted escalation for educational institutions.
 # ComplaintBuddy — Anonymous Complaint & Mentor–Mentee System
 
 **"Speak Freely. Be Heard. Get Resolved."**
 
 ## Problem Statement
 
-Students can report infrastructure, academic, harassment, hostel, canteen, and
-transport issues anonymously. CampusCare gives each complaint a unique tracking
-ID and routes it through the appropriate authority while preserving the
-student's identity in authority-facing views.
 Students on campus often face issues (infrastructure problems, faculty concerns,
 harassment, hostel/canteen/transport complaints) but hesitate to report them
 because of fear of being identified. ComplaintBuddy lets students file complaints
@@ -33,7 +26,7 @@ a structured escalation and analytics system to resolve issues faster.
 - Recurring-issue detection using simple keyword similarity (no AI APIs)
 - Mentor weekly reports (draft/submit) viewable by HOD/Principal/Admin
 - Admin user management (view users, change roles)
-- Responsive design: collapsible sidebar and mobile-friendly tables
+- Responsive design: sidebar collapses to a mobile menu, tables scroll on mobile
 
 ## Tech Stack
 
@@ -44,7 +37,6 @@ a structured escalation and analytics system to resolve issues faster.
 ## Project Structure
 
 ```
-complaint-buddy/
 complaintbuddy/
 ├── backend/
 │   ├── models/        # User, Complaint, WeeklyReport
@@ -62,114 +54,54 @@ complaintbuddy/
         └── api/            # axios instance
 ```
 
-## Getting Started
+## Installation
 
 ### Prerequisites
-
-- Node.js 18 or newer
-- MongoDB running locally, or a MongoDB Atlas connection string
-
-Check the installed Node.js version with:
-
-```bash
-node --version
-```
+- Node.js 18+
+- MongoDB running locally (or a MongoDB Atlas connection string)
 
 ### 1. MongoDB Setup
-
-Install MongoDB Community Edition and start it locally, or create a MongoDB Atlas
-cluster. The default local URI is:
+Install MongoDB Community Edition and start it locally, or create a free
+MongoDB Atlas cluster and copy its connection string. The default local URI is:
 
 ```
 mongodb://127.0.0.1:27017/complaintbuddy
 ```
 
-### 2. Configure the backend
+### 2. Backend
 
 ```bash
 cd backend
 npm install
-```
-
-macOS/Linux:
-
-```bash
 cp .env.example .env
+# Edit .env if your MongoDB URI or JWT secret differ
+npm run seed     # creates demo users + demo complaints
+npm run dev      # starts the API on http://localhost:5000
 ```
 
-PowerShell:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Edit `backend/.env` when your MongoDB URI, JWT secret, or frontend URL differ
-from the defaults.
-
-### 3. Configure the frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
-macOS/Linux:
-
-```bash
-cp .env.example .env
-```
-
-PowerShell:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-The frontend defaults to the backend at `http://localhost:5000/api`.
-
-### 4. Seed demo data
-
-From the repository root:
-
-```bash
-npm run seed
-```
-
-This resets the demo users and complaints before creating fresh records. Do not
-run it against a database containing data you need to keep.
-
-### 5. Run the application
-
-From the repository root, start both services:
-
-```bash
-npm install
-npm run dev
-```
-
-The API runs at `http://localhost:5000` and the frontend at
-`http://localhost:5173`. Verify the API is running at
-`http://localhost:5000/api/health`.
-
-To run either service separately:
-
-```bash
-cd backend
-npm run dev
-```
+### 3. Frontend
 
 ```bash
 cd frontend
+npm install
+cp .env.example .env
+npm run dev      # starts the app on http://localhost:5173
+```
+
+### 4. Run both together (optional)
+
+From the project root:
+
+```bash
+npm install
 npm run dev
 ```
 
-The root `dev` script uses `concurrently` to start both services together, so
-backend and frontend dependencies must be installed first.
+This uses `concurrently` to start both backend and frontend together.
 
 ## Environment Variables
 
-`backend/.env`
-
+**backend/.env**
 ```
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/complaintbuddy
@@ -177,8 +109,7 @@ JWT_SECRET=change_this_secret
 CLIENT_URL=http://localhost:5173
 ```
 
-`frontend/.env`
-
+**frontend/.env**
 ```
 VITE_API_URL=http://localhost:5000/api
 ```
@@ -199,28 +130,12 @@ All demo accounts use the same password: **`Campus@123`**
 Demo complaints are created automatically by `npm run seed` and are clearly
 demo data seeded for dashboard demonstration.
 
-## Testing
-
-Run the backend routing test from the `backend` directory:
-
-```bash
-node --test tests/mentorRouting.test.js
-```
-
-Build the frontend for a production check:
-
-```bash
-npm run build --prefix frontend
-```
-
 ## API Overview
 
 ```
 POST   /api/auth/register
 POST   /api/auth/login
 GET    /api/auth/me
-
-GET    /api/health
 
 POST   /api/complaints                 (student, multipart/form-data with evidence)
 GET    /api/complaints                 (role-filtered list, supports ?status ?priority ?category ?department ?search)
@@ -252,7 +167,7 @@ All routes except register/login require a `Bearer` JWT token.
 - More advanced repeated-issue detection (e.g. embeddings-based similarity)
 - Audit logs for admin actions
 - Pagination for large complaint lists
-- Broader automated test coverage (unit and integration)
+- Automated tests (unit + integration)
 
 ## Known Limitations
 
