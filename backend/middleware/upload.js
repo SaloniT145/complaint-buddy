@@ -1,9 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
-
-const uploadDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+const uploadDir = require('../utils/uploadDirectory');
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf', 'video/mp4'];
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB

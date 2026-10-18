@@ -6,7 +6,7 @@ import StatusBadge from '../components/StatusBadge';
 import PriorityBadge from '../components/PriorityBadge';
 import ComplaintTimeline from '../components/ComplaintTimeline';
 import ChatBox from '../components/ChatBox';
-import api from '../api/axios';
+import api, { API_URL } from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Paperclip } from 'lucide-react';
@@ -64,6 +64,7 @@ export default function ComplaintDetails() {
 
   const currentIdx = STATUS_FLOW.indexOf(complaint.status);
   const nextStatus = STATUS_FLOW[currentIdx + 1];
+  const uploadsUrl = `${API_URL.replace(/\/api\/?$/, '')}/api/uploads`;
 
   return (
     <DashboardLayout>
@@ -94,7 +95,7 @@ export default function ComplaintDetails() {
                 {complaint.evidence.map((ev, i) => (
                   <a
                     key={i}
-                    href={`${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}/uploads/${ev.filename}`}
+                    href={`${uploadsUrl}/${ev.filename}`}
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center gap-1 text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-2 rounded-lg"

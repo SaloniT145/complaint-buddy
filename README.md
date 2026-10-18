@@ -38,7 +38,10 @@ a structured escalation and analytics system to resolve issues faster.
 
 ```
 complaintbuddy/
+├── api/
+│   └── [...path].js # Vercel serverless API entry point
 ├── backend/
+│   ├── app.js        # Express app (shared by local and Vercel runtimes)
 │   ├── models/        # User, Complaint, WeeklyReport
 │   ├── routes/        # auth, complaints, dashboard, reports, users
 │   ├── middleware/     # auth, role authorization, upload, error handler
@@ -101,18 +104,53 @@ This uses `concurrently` to start both backend and frontend together.
 
 ## Environment Variables
 
+For local development, copy the examples in `backend/` and `frontend/` to
+`.env` files in their respective directories.
+
 **backend/.env**
 ```
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/complaintbuddy
-JWT_SECRET=change_this_secret
+JWT_SECRET=replace_with_a_long_random_secret
 CLIENT_URL=http://localhost:5173
 ```
 
 **frontend/.env**
 ```
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=/api
 ```
+
+Vite proxies `/api` and `/uploads` to the local backend during development.
+The frontend uses `/api` by default, so it can also call the API on the same
+Vercel deployment without a frontend API URL setting.
+
+## Deploy to Vercel
+
+Deploy the repository root as a Vercel project. The included `vercel.json`
+builds the Vite frontend, serves client-side routes, and sends `/api/*` requests
+to the Express serverless function. The root npm workspaces install the
+frontend and backend dependencies together.
+
+Add these environment variables in the Vercel project settings for each
+environment you deploy:
+
+- `MONGO_URI`: MongoDB Atlas connection string. Allow Vercel's outbound
+  connections in the Atlas network access settings.
+- `JWT_SECRET`: a long, randomly generated secret; do not use the example
+  value or commit a real secret.
+- `CLIENT_URL` (optional): comma-separated allowed browser origins when the
+  frontend is hosted on a different domain. The Vercel deployment URL is also
+  allowed automatically.
+
+`VITE_API_URL` is not required for a same-project deployment. If you set it,
+use `/api` for same-origin routing or the full `/api` URL of a separately
+hosted backend.
+
+Evidence uploads are written under `/tmp` when running on Vercel. Vercel's
+filesystem is temporary, so uploaded evidence is not durable and may disappear
+between function instances. Configure durable object storage before relying on
+evidence uploads in production. The Vercel function request-size limit also
+applies to multipart uploads.
 
 ## Demo Credentials
 
@@ -177,4 +215,3 @@ All routes except register/login require a `Bearer` JWT token.
 - Evidence files are stored on local disk (`backend/uploads/`), which is fine
   for local/demo use but not suited for a multi-server production deployment.
 - No pagination yet on complaint/user lists — fine for demo data volumes.
-
