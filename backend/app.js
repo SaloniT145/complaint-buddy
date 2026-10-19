@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const mongoose = require('mongoose');
 const path = require('path');
 
 const authRoutes = require('./routes/auth');
@@ -27,6 +28,19 @@ app.use('/uploads', express.static(uploadDirectory));
 app.use('/api/uploads', express.static(uploadDirectory));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/api/health/database', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState !== 1 || !mongoose.connection.db) {
+      throw new Error('MongoDB is not connected');
+    }
+
+    await mongoose.connection.db.admin().ping();
+    return res.json({ status: 'ok', database: 'connected' });
+  } catch (error) {
+    console.error('Database health check failed:', error.message);
+    return res.status(503).json({ status: 'error', database: 'disconnected' });
+  }
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/complaints', complaintRoutes);

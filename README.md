@@ -171,6 +171,8 @@ demo data seeded for dashboard demonstration.
 ## API Overview
 
 ```
+GET    /api/health                       (API liveness)
+GET    /api/health/database              (live MongoDB connection check)
 POST   /api/auth/register
 POST   /api/auth/login
 GET    /api/auth/me
@@ -196,7 +198,9 @@ PATCH  /api/users/:id/role             (admin)
 PATCH  /api/users/:id/status           (admin)
 ```
 
-All routes except register/login require a `Bearer` JWT token.
+All routes except health checks, register, and login require a `Bearer` JWT token.
+The database health check pings MongoDB and returns `503` when the database is
+unavailable.
 
 ## Future Scope
 

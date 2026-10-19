@@ -4,8 +4,15 @@ const app = require('../backend/app');
 let connection;
 
 module.exports = async function handler(req, res) {
-  const missingVariables = ['MONGO_URI', 'JWT_SECRET'].filter((name) => !process.env[name]);
+  const isDatabaseHealthCheck =
+    req.method === 'GET' && req.url?.split('?')[0] === '/api/health/database';
+  const requiredVariables = isDatabaseHealthCheck ? ['MONGO_URI'] : ['MONGO_URI', 'JWT_SECRET'];
+  const missingVariables = requiredVariables.filter((name) => !process.env[name]);
   if (missingVariables.length) {
+    if (isDatabaseHealthCheck) {
+      return res.status(503).json({ status: 'error', database: 'disconnected' });
+    }
+
     return res.status(500).json({
       message: `Missing required environment variables: ${missingVariables.join(', ')}`,
     });
@@ -23,6 +30,10 @@ module.exports = async function handler(req, res) {
     return app(req, res);
   } catch (error) {
     console.error('API initialization failed:', error.message);
+    if (isDatabaseHealthCheck) {
+      return res.status(503).json({ status: 'error', database: 'disconnected' });
+    }
+
     return res.status(500).json({ message: 'API initialization failed' });
   }
 };
